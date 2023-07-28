@@ -1,5 +1,5 @@
 
-<h2>User List</h2>
+<!-- <h2>User List</h2>
 <div *ngIf="userList.length === 0">
   Loading user list...
 </div>
@@ -10,5 +10,29 @@
       <strong>Email:</strong> {{ user.email }}
     </li>
   </ul>
+</div> -->
+<div class="table-container">
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngIf="userList.length === 0; else userListData">
+      <tr>
+        <td colspan="2">Loading user list...</td>
+      </tr>
+    </ng-container>
+    <ng-template #userListData>
+      <tr *ngFor="let user of userList" (click)="loadConversationHistory(user.id)">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+      </tr>
+    </ng-template>
+  </tbody>
+</table>
 </div>
+
 
