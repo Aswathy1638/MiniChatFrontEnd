@@ -37,7 +37,7 @@ export class UserRegisterComponent implements OnInit{
         (response) => {
           console.log('User Registration successful', response);
           // Redirect user to login after successful registration
-          this.router.navigate(['/login']);
+          this.router.navigate(['/']);
         },
         (error) => {
           console.log('Failed Registration', error);
