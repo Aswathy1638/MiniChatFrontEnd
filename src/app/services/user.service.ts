@@ -21,7 +21,7 @@ export class UserService {
         const body = { name,email, password };
         return this.http.post<any>(url, body);
 }
-getUserList():Observable<any[]>
+GetUserList():Observable<any[]>
 {
   const token = localStorage.getItem('jwtToken');
   if (!token) {
@@ -30,6 +30,6 @@ getUserList():Observable<any[]>
   const headers = new HttpHeaders({
     'Authorization': `Bearer ${token}`
   });
-  return this.http.get<any[]>(`${this.apiUrl}/getUserList`, { headers });
+  return this.http.get<any[]>(`${this.apiUrl}`, { headers });
 }
 }

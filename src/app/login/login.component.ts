@@ -33,7 +33,9 @@ export class LoginComponent implements OnInit {
 
     this.userService.loginUser(email,password).subscribe(
       (response)=>{
+
         localStorage.setItem('jwtToken',response.token);
+        console.log('User login successful', response);
         this.router.navigate(['/chat']);
       },
       (error)=>{

@@ -17,7 +17,7 @@ export class UserlistComponent  implements OnInit{
     this.loadUserList();
   }
   loadUserList() {
-    this.userService.getUserList().subscribe(
+    this.userService.GetUserList().subscribe(
       (users:any[])=>{
         this.userList=users;
         this.isLoading=false;
