@@ -42,13 +42,15 @@ export class MessageService {
     const url = `${this.apiUrl}/${messageId}`;
     return this.http.put<any>(url, updatedMessage, httpOptions);
   }
-  deleteMessage(messageId: number, jwtToken: string): Observable<any> {
-    const url = `${this.apiUrl}/${messageId}`;
-    
-    // Set the Authorization header with the JWT token
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`);
-  
-    return this.http.delete(url, { headers });
+  deleteMessage(messageId: number): Observable<any> {
+    const token = localStorage.getItem('jwtToken');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    };
+    return this.http.delete(`${this.apiUrl}/${messageId}`, httpOptions);
   }
 
 }

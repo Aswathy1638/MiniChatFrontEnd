@@ -151,6 +151,26 @@ export class ConversationhistoryComponent implements OnInit {
   getUserById(userId: number) {
     return this.userList.find(user => user.id === userId);
   }
-  
+  deleteMessage(message: any) {
+    // Show a confirmation dialog to the user
+    const confirmation = confirm('Are you sure you want to delete this message?');
+    if (!confirmation) {
+      return; // User canceled the deletion
+    }
+
+    // Make the DELETE request to the backend API
+    this.messageSevice.deleteMessage(message.id).subscribe(
+      (response) => {
+        // Upon success, remove the deleted message from the conversation history
+        this.messages = this.messages.filter((msg) => msg.id !== message.id);
+        console.log('Message deleted successfully', response);
+      },
+      (error) => {
+        console.log('Error deleting message', error);
+        // Display relevant error message to the user
+      }
+    );
+  }
+
 
 }
