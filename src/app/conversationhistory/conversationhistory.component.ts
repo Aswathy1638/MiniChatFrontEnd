@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {MessageService} from '../services/message.service'
+import {UserService} from '../services/user.service'
 
 @Component({
   selector: 'app-conversationhistory',
@@ -16,7 +17,7 @@ export class ConversationhistoryComponent implements OnInit {
   /**
    *
    */
-  constructor(private route:ActivatedRoute,private messageSevice:MessageService) { } 
+  constructor(private route:ActivatedRoute,private messageSevice:MessageService,private userService:UserService) { } 
   ngOnInit(): void {
      // Get the userId from the route parameter
   this.route.paramMap.subscribe(params => {
@@ -46,6 +47,9 @@ export class ConversationhistoryComponent implements OnInit {
    );
   
   
+  }
+  get userList(): any[] {
+    return this.userService.userList;
   }
 
 }

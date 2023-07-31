@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { UserlistComponent } from './userlist/userlist.component';
 import { ConversationhistoryComponent } from './conversationhistory/conversationhistory.component';
+import {FlexLayoutModule} from '@angular/flex-layout'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ConversationhistoryComponent } from './conversationhistory/conversation
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
