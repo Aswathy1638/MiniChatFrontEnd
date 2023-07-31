@@ -1,18 +1,43 @@
+<app-userlist></app-userlist>
 
-<h2>Conversation History</h2>
-<div *ngIf="isLoading">
-  Loading conversation history...
+<div class="chat-container">
+  <h2>Conversation History</h2>
+  <div *ngIf="isLoading" class="loading-message">
+    Loading conversation history...
+  </div>
+  <div *ngIf="!isLoading && messages.length === 0" class="no-messages">
+    No conversation history found.
+  </div>
+  <div *ngIf="messages.length > 0" class="chat">
+    <ul>
+      <li *ngFor="let message of messages" class="chat-message">
+        <div *ngIf="message.senderId === userId" class="incoming-message">
+          <strong>{{message.name}}</strong> {{ message.content }}<br>
+          <small>{{ message.timestamp }}</small>
+        </div>
+        <li *ngFor="let message of messages" class="chat-message" (contextmenu)="onContextMenu($event, message)">
+        <div *ngIf="message.receiverId === userId" class="outgoing-message">
+          <!-- <strong>From:</strong> {{ message.senderId }}<br>  -->
+         <strong>Me:</strong>
+         <div (contextmenu)="showEditButton[message.id] = true">
+          {{ message.content }}<br>
+          <small>{{ message.timestamp }}</small>
+                   
+          <div *ngIf="showEditButton[message.id]">
+            <input type="text" [(ngModel)]="message.editedContent">
+            <button (click)="onAcceptEdit(message)">Accept</button>
+            <button (click)="onDeclineEdit(message)">Decline</button>
+         
+          </div>
+        </div>
+        </div>
+      </li>
+    </ul> 
+  </div>
+
+  <div class="send-message-container">
+    <input type="text" [(ngModel)]="newMessageContent" placeholder="Type your message...">
+    <button (click)="sendMessage()">Send</button>
+  </div>
 </div>
-<div *ngIf="!isLoading && messages.length === 0">
-  No conversation history found.
-</div>
-<div *ngIf="messages.length > 0">
-  <ul>
-    <li *ngFor="let message of messages">
-      <strong>From:</strong> {{ message.senderId }}<br>
-      <strong>To:</strong> {{ message.receiverId }}<br>
-      <strong>Content:</strong> {{ message.content }}<br>
-      <strong>Timestamp:</strong> {{ message.timestamp }}
-    </li>
-  </ul>
-</div>
+
