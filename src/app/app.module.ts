@@ -8,7 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { UserlistComponent } from './userlist/userlist.component';
 import { ConversationhistoryComponent } from './conversationhistory/conversationhistory.component';
-import {FlexLayoutModule} from '@angular/flex-layout'
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { RequestLogsComponent } from './request-logs/request-logs.component'
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {FlexLayoutModule} from '@angular/flex-layout'
     UserRegisterComponent,
     LoginComponent,
     UserlistComponent,
-    ConversationhistoryComponent
+    ConversationhistoryComponent,
+    RequestLogsComponent
   ],
   imports: [
     BrowserModule,
