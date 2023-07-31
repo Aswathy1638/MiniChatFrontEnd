@@ -7,13 +7,15 @@ import { UserRegisterComponent } from './user-register/user-register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { UserlistComponent } from './userlist/userlist.component';
+import { ConversationhistoryComponent } from './conversationhistory/conversationhistory.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRegisterComponent,
     LoginComponent,
-    UserlistComponent
+    UserlistComponent,
+    ConversationhistoryComponent
   ],
   imports: [
     BrowserModule,

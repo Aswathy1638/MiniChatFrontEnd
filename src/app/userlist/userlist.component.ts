@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
+import {MessageService} from '../services/message.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-userlist',
@@ -9,10 +11,13 @@ import { UserService } from '../services/user.service';
 export class UserlistComponent  implements OnInit{
   userList: any[]=[];
    isLoading : boolean=true;
+   conversationId!: number;
+   messages :any[]=[];
+   
   /**
    *
    */
-  constructor(private userService :UserService) {}
+  constructor(private userService :UserService,private messageService:MessageService, private router: Router) {}
   ngOnInit(): void {
     this.loadUserList();
   }
@@ -30,4 +35,8 @@ export class UserlistComponent  implements OnInit{
     )
   }
 
+  loadConversationHistory(userId:number) {
+    this.router.navigate(['/chat/user', userId]);
+   
+    }
 }

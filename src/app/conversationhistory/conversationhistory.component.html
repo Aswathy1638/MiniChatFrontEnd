@@ -1,0 +1,18 @@
+
+<h2>Conversation History</h2>
+<div *ngIf="isLoading">
+  Loading conversation history...
+</div>
+<div *ngIf="!isLoading && messages.length === 0">
+  No conversation history found.
+</div>
+<div *ngIf="messages.length > 0">
+  <ul>
+    <li *ngFor="let message of messages">
+      <strong>From:</strong> {{ message.senderId }}<br>
+      <strong>To:</strong> {{ message.receiverId }}<br>
+      <strong>Content:</strong> {{ message.content }}<br>
+      <strong>Timestamp:</strong> {{ message.timestamp }}
+    </li>
+  </ul>
+</div>
