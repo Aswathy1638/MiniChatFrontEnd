@@ -11,17 +11,33 @@
   <div *ngIf="messages.length > 0" class="chat">
     <ul>
       <li *ngFor="let message of messages" class="chat-message">
-        <div *ngIf="message.senderId === userId" class="outgoing-message">
-          <strong>Me:</strong> {{ message.content }}<br>
+        <div *ngIf="message.senderId === userId" class="incoming-message">
+          <strong>{{message.name}}</strong> {{ message.content }}<br>
           <small>{{ message.timestamp }}</small>
         </div>
-        <div *ngIf="message.receiverId === userId" class="incoming-message">
-          <strong>From:</strong> {{ message.senderId }}<br>
-          <strong>Content:</strong> {{ message.content }}<br>
+        <li *ngFor="let message of messages" class="chat-message" (contextmenu)="onContextMenu($event, message)">
+        <div *ngIf="message.receiverId === userId" class="outgoing-message">
+          <!-- <strong>From:</strong> {{ message.senderId }}<br>  -->
+         <strong>Me:</strong>
+         <div (contextmenu)="showEditButton[message.id] = true">
+          {{ message.content }}<br>
           <small>{{ message.timestamp }}</small>
+                   
+          <div *ngIf="showEditButton[message.id]">
+            <input type="text" [(ngModel)]="message.editedContent">
+            <button (click)="onAcceptEdit(message)">Accept</button>
+            <button (click)="onDeclineEdit(message)">Decline</button>
+         
+          </div>
+        </div>
         </div>
       </li>
-    </ul>
+    </ul> 
+  </div>
+
+  <div class="send-message-container">
+    <input type="text" [(ngModel)]="newMessageContent" placeholder="Type your message...">
+    <button (click)="sendMessage()">Send</button>
   </div>
 </div>
 
