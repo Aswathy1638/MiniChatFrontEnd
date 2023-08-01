@@ -1,61 +1,80 @@
-<p>request-logs works!</p>
-<div class="container">
-    <h2>Request Logs</h2>
-  
-    <!-- Timeframe Selection -->
-    <div class="timeframe-selection">
-      <label>Timeframe:</label>
-      <select [(ngModel)]="selectedTimeframe" (change)="onTimeframeChange()">
-        <option value="5">Last 5 mins</option>
-        <option value="10">Last 10 mins</option>
-        <option value="30">Last 30 mins</option>
-        <option value="custom">Custom</option>
-      </select>
-      <input *ngIf="selectedTimeframe === 'custom'" type="datetime-local" [(ngModel)]="customStartTime">
-      <input *ngIf="selectedTimeframe === 'custom'" type="datetime-local" [(ngModel)]="customEndTime">
-      <button (click)="loadLogs()">Load Logs</button>
-    </div>
-  
-    <!-- Columns Selection -->
-    <div class="columns-selection">
-      <label>Select Columns:</label>
-      <label>
-        <input type="checkbox" [(ngModel)]="showIdColumn"> Id
-      </label>
-      <label>
-        <input type="checkbox" [(ngModel)]="showIpColumn"> IP
-      </label>
-      <label>
-        <input type="checkbox" [(ngModel)]="showUsernameColumn"> Username
-      </label>
-      <label>
-        <input type="checkbox" [(ngModel)]="showRequestBodyColumn"> Request Body
-      </label>
-      <label>
-        <input type="checkbox" [(ngModel)]="showTimeStampColumn"> TimeStamp
-      </label>
-    </div>
-  
-    <!-- Logs Table -->
-    <table>
-      <thead>
-        <tr>
-          <th *ngIf="showIdColumn">Id</th>
-          <th *ngIf="showIpColumn">IP</th>
-          <th *ngIf="showUsernameColumn">Username</th>
-          <th *ngIf="showRequestBodyColumn">Request Body</th>
-          <th *ngIf="showTimeStampColumn">TimeStamp</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let log of logs">
-          <td *ngIf="showIdColumn">{{ log.Id }}</td>
-          <td *ngIf="showIpColumn">{{ log.Ip }}</td>
-          <td *ngIf="showUsernameColumn">{{ log.Username }}</td>
-          <td *ngIf="showRequestBodyColumn">{{ log.RequestBody }}</td>
-          <td *ngIf="showTimeStampColumn">{{ log.TimeStamp | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
-        </tr>
-      </tbody>
-    </table>
+<!-- <div>
+  <h2>Request Logs</h2>
+  <label for="timeframe">Select Timeframe:</label>
+  <select [(ngModel)]="selectedTimeframe" (change)="onTimeRangeSelect(selectedTimeframe)">
+    <option value="last5mins">Last 5 mins</option>
+    <option value="last10mins">Last 10 mins</option>
+    <option value="last30mins">Last 30 mins</option>
+    <option value="custom">Custom</option>
+
+    
+  </select>
+
+  <div *ngIf="selectedTimeframe === 'custom'">
+    <label for="customStartTime">Start Time:</label>
+    <input type="datetime-local" [(ngModel)]="customStartTime">
+    <label for="customEndTime">End Time:</label>
+    <input type="datetime-local" [(ngModel)]="customEndTime">
+    <button (click)="loadLogs()">Load Logs</button>
   </div>
-  
+
+  <table>
+    <thead>
+      <tr>
+        <th *ngIf="showIdColumn">id</th>
+        <th *ngIf="showIpColumn">iP</th>
+        <th *ngIf="showUsernameColumn">username</th>
+        
+      
+        <th *ngIf="showTimeStampColumn">timeStamp</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let log of logs">
+        {{logs}}
+        <td *ngIf="showIdColumn">{{ log.id }}</td>
+        <td *ngIf="showIpColumn">{{ log.ip }}</td>
+        <td *ngIf="showUsernameColumn">{{ log.username }}</td>
+        <td *ngIf="showTimeStampColumn">{{ log.TimeStamp }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->
+
+<div>
+  <h2>Request Logs</h2>
+  <label for="timeframe">Select Timeframe:</label>
+  <select [(ngModel)]="selectedTimeframe" (change)="onTimeRangeSelect(selectedTimeframe)">
+    <option value="last5mins">Last 5 mins</option>
+    <option value="last10mins">Last 10 mins</option>
+    <option value="last30mins">Last 30 mins</option>
+    <option value="custom">Custom</option>
+  </select>
+
+  <div *ngIf="selectedTimeframe === 'custom'">
+    <label for="customStartTime">Start Time:</label>
+    <input type="datetime-local" [(ngModel)]="customStartTime">
+    <label for="customEndTime">End Time:</label>
+    <input type="datetime-local" [(ngModel)]="customEndTime">
+    <button (click)="loadLogs()">Load Logs</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th *ngIf="showIdColumn">id</th>
+        <th *ngIf="showIpColumn">iP</th>
+        <th *ngIf="showUsernameColumn">username</th>
+        <th *ngIf="showTimeStampColumn">timeStamp</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let log of logs">
+        <td *ngIf="showIdColumn">{{ log?.id }}</td>
+        <td *ngIf="showIpColumn">{{ log.ip }}</td>
+        <td *ngIf="showUsernameColumn">{{ log.username }}</td>
+        <td *ngIf="showTimeStampColumn">{{ log.timeStamp }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
