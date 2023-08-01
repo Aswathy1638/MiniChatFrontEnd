@@ -10,6 +10,7 @@ import { UserlistComponent } from './userlist/userlist.component';
 import { ConversationhistoryComponent } from './conversationhistory/conversationhistory.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { RequestLogsComponent } from './request-logs/request-logs.component';
+import { CommonComponent } from './common/common.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { RequestLogsComponent } from './request-logs/request-logs.component';
     LoginComponent,
     UserlistComponent,
     ConversationhistoryComponent,
-    RequestLogsComponent
+    RequestLogsComponent,
+    CommonComponent
   ],
   imports: [
     BrowserModule,
