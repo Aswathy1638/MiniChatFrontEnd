@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,11 +12,23 @@ export class UserService {
   {
 
    }
-  registerUser(name:string,email:string,password:string){
+ /* registerUser(name:string,email:string,password:string){
     const url = `${this.apiUrl}/register`;
     const data={email,password};
     return this.http.post(this.apiUrl,data);
-      } 
+      } */
+
+      registerUser(name: string, email: string, password: string): Observable<any> {
+        const url = `${this.apiUrl}/register`;
+        const data = { name, email, password };
+    
+        return this.http.post<any>(url, data).pipe(
+          catchError((error) => {
+            // Handle and log errors here if needed
+            return throwError(error);
+          })
+        );
+      }
       loginUser(email: string, password: string) {
         const url = `${this.apiUrl}/login`;
         const body = { name,email, password };
