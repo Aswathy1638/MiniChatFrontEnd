@@ -80,7 +80,7 @@ body {
   }
   
   .users-container .status.away {
-    background-color: #f0ad4e;
+    background-color: #d3e0f0;
   }
   
   .users-container .status.offline {
@@ -176,3 +176,15 @@ body {
     /* justify-content: space-between; */
     flex-direction: column;
   }
+  .user-info {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+  }
+  .avatar img {
+    display: block;
+    border-radius: 20px;
+    height: 100%;
+    width: 35px;
+}

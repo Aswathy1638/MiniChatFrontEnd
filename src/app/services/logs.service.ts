@@ -10,15 +10,15 @@ export class LogsService {
   private baseUrl = 'https://localhost:7298/api/Logs';
   constructor(private http: HttpClient) { 
       }
-getLogs(startTime?: string, endTime?: string) {
-    // If startTime and endTime are not provided, set them to default values (last 5 mins)
-    if (!startTime || !endTime) {
-      const defaultEndTime = new Date().toISOString();
-      const defaultStartTime = new Date();
-      defaultStartTime.setMinutes(defaultStartTime.getMinutes() - 5);
-      startTime = defaultStartTime.toISOString();
-      endTime = defaultEndTime;
-    }
+      getLogs(startTime?: string, endTime?: string): Observable<any[]> {
+        // If startTime and endTime are not provided, set them to default values (last 5 mins)
+        if (!startTime || !endTime) {
+          const defaultEndTime = new Date().toISOString();
+          const defaultStartTime = new Date();
+          defaultStartTime.setMinutes(defaultStartTime.getMinutes() - 5);
+          startTime = defaultStartTime.toISOString();
+          endTime = defaultEndTime;
+        }
 
     const token = localStorage.getItem('jwtToken');
     const httpOptions = {
