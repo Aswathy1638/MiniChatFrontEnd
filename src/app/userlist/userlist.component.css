@@ -162,3 +162,17 @@ body {
     background-color: #0056b3;
   }
   
+
+  .sidebar {
+    position: fixed;
+    /* top: 0;
+    left: 0; */
+  height: 100%;
+    width: 250px;
+    background-color: #d6c210;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    /* justify-content: space-between; */
+    flex-direction: column;
+  }
